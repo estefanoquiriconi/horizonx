@@ -1,0 +1,254 @@
+:root {
+  --color1: #27374d;
+  --color2: #526d82;
+  --color3: #9db2bf;
+  --color4: #dde6ed;
+  --x-plt-1: #5176ad;
+  --x-plt-2: #a5b7d4;
+  --x-plt-3: #24344c;
+  --x-plt-4: #6c849c;
+  --x-plt-5: #9cb4c4;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+select {
+  border: 1px solid #ccc;
+
+  padding: 6px 8px;
+  border-radius: 4px;
+}
+
+.txt-inp {
+  margin-top: 2px;
+  margin-bottom: 16px;
+
+  border: 1px solid #ccc;
+  padding: 6px 8px;
+  border-radius: 4px;
+}
+
+.entrega-div {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
+}
+
+.container_cart {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 150px;
+}
+
+.conteiner_all_cart {
+  border: dotted 3px var(--color1);
+  width: 80%;
+  border-radius: 2.5%;
+  margin: 10px 10%;
+}
+
+.boldy {
+  font-weight: 600;
+}
+
+.form_cart {
+  width: 100%;
+  background-color: #eaf0f5;
+  display: flex;
+  flex-direction: column;
+  border-radius: 3%;
+  align-items: center;
+}
+
+.product_img_detalle {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.img_product {
+  height: 250px;
+}
+
+.datos_adicionales {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.name_product {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.precio_cantidad {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.detalle_compra {
+  align-self: center;
+  text-align: justify;
+  padding: 3% 6%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 95%;
+  height: 90%;
+  padding: 10px;
+  border-radius: 2%;
+  margin: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.datos_envio {
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.form-div {
+  align-self: center;
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+
+  background-color: #fff;
+  padding: 3% 6%;
+  width: 95%;
+  border-radius: 2%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#inp-radio {
+  display: flex;
+  flex-direction: column;
+}
+
+.texto_detalle {
+  font-weight: bold;
+  margin: 10px;
+  font-size: 1.2em;
+}
+
+.div_span {
+  display: flex;
+  justify-content: space-between;
+}
+
+.div_span_total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 25px;
+  margin: 20px 10px;
+}
+
+.botones_finales {
+  width: 100%;
+  height: 60px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.datos_demas_carros {
+  width: 100%;
+  margin: 0 0 10px 1%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+button {
+  background-color: var(--color1);
+  width: 95%;
+  align-self: center;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all;
+  transition-duration: 300ms;
+  margin-top: 10px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.cartEmpty-container{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  margin-top: 80px;
+}
+
+.cartEmpty{
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+  width: 80%;
+  max-width: 600px;
+}
+
+@media (min-width: 768px) {
+  .form_cart {
+    flex-direction: row;
+  }
+
+  #inp-radio {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 1300px){
+
+  .submenu2 {
+    display: none;
+    position: absolute; 
+    top: 55%; 
+    right: 0; 
+    z-index: 1; 
+    background-color: #DDE6ED; 
+    border: 1px solid #ccc;
+    padding: 10px; 
+    list-style: none;
+    border-radius: 5px;
+    transition: 10s;
+    font-size: 15px;
+  }
+  
+  .submenu1:hover + .submenu2,
+  .submenu2:hover {
+    display: block; 
+    color: #333;
+    
+  }
+  
+  .submenu2 li a {
+    color: black; 
+    transition: color 0.3s ease; 
+  }
+  
+  .submenu2 li a:hover {
+    color: #9DB2BF;
+  }
+  
+  }

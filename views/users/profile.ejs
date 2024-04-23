@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs', {title: 'Profile', styles:
+  '/css/profile.css'}) %>
+  <body>
+    <%- include('../partials/header.ejs') %>
+    <main>
+      <div class="profile-container">
+        <img
+          src="/images/users/<%= user.avatar %>"
+          alt="Avatar"
+          class="avatar"
+        />
+        <div class="user-info">
+          <form
+            action="/users/edit?_method=PUT"
+            method="post"
+            enctype="multipart/form-data"
+            id="formProfile"
+          >
+            <label for="firstName" class="label-profile">Nombre:</label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              placeholder="Nombre"
+              class="input-profile"
+              value="<%= user.first_name %>"
+            />
+            <p id="firstNameError" class="error">
+              <%= locals.errors && errors.firstName?.msg %>
+            </p>
+            <label for="lastName" class="label-profile">Apellido:</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              placeholder="Apellido"
+              class="input-profile"
+              value="<%= user.last_name %>"
+            />
+            <p id="lastNameError" class="error">
+              <%= locals.errors && errors.lastName?.msg %>
+            </p>
+            <label for="email" class="label-profile">Email:</label>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              placeholder="Email"
+              class="input-profile"
+              value="<%= user.email %>"
+            />
+            <p id="emailError" class="error">
+              <%= locals.errors && errors.email?.msg %>
+            </p>
+            <label for="avatar" class="label-profile"
+              >Actualizar imagen de perfil:</label
+            >
+            <input
+              type="file"
+              name="avatar"
+              accept="image/png, image/jpeg"
+              id="avatar"
+              class="input-profile"
+            />
+            <div class="div-btn">
+              <button type="submit" class="btn">Guardar cambios</button>
+              <a href="/users/logout" class="btn">Cerrar Sesión</a>
+            </div>
+          </form>
+        </div>
+      </div>
+      <% if (locals.isLogged && locals.userLogged.role.name == 'administrador')
+      { %>
+      <a href="/products/create"><i class="fa-solid fa-plus btn-new"></i></a>
+      <% } %> 
+    </main>
+    <%- include('../partials/footer.ejs') %>
+    <script src="/js/userFormValidation.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
+</html>

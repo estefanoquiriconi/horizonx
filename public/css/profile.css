@@ -1,0 +1,117 @@
+@import url(colores.css);
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 800px;
+  margin: 50px auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  align-items: center;
+}
+
+.user-info {
+  padding: 15px;
+}
+
+.avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0px 50px 0px 50px;
+}
+
+.label-profile {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input-profile {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.input-profile[type='file'] {
+  border: none;
+}
+
+.input-profile:focus {
+  border-color: var(--color1);
+  box-shadow: 0 0 2px var(--color2);
+  outline: none;
+}
+
+.div-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .profile-container {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 425px) {
+  main {
+    margin-top: 100px;
+  }
+
+  .div-btn {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 1300px){
+
+  .submenu2 {
+    display: none;
+    position: absolute; 
+    top: 55%; 
+    right: 0; 
+    z-index: 1; 
+    background-color: #DDE6ED; 
+    border: 1px solid #ccc;
+    padding: 10px; 
+    list-style: none;
+    border-radius: 5px;
+    transition: 10s;
+    font-size: 15px;
+  }
+  
+  .submenu1:hover + .submenu2,
+  .submenu2:hover {
+    display: block; 
+    color: #333;
+    
+  }
+  
+  .submenu2 li a {
+    color: black; 
+    transition: color 0.3s ease; 
+  }
+  
+  .submenu2 li a:hover {
+    color: #9DB2BF;
+  }
+  
+  }

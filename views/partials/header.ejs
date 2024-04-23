@@ -1,0 +1,55 @@
+<header class="main-header">
+  <div class="main-header-top-bar">
+    <a class="logo-link" href="/">
+    <div class="logo-container">
+      <P class="horizonL">HORIZON </P>
+      <img class="main-header-logo" src="/images/2logo.png" alt="Logo"
+    />
+    </div>
+  </a>
+    <form action="/products/search" method="get" >
+      <input class="input-search" name="q" type="text" placeholder="Buscar..." />
+    </form>
+    <ul class="navbar-top">
+      <% if (locals.isLogged && locals.userLogged.role == 'administrador') { %>
+      <li><a href="/products">Administrar</a></li>
+      <% }else { %>
+      <li><a href="/products">Todos</a></li>
+      <% } %>
+      <li><a href="/products/celulares">Celulares</a></li>
+      <li><a href="/products/tablets">Tablets</a></li>
+      <li><a href="/products/computadoras">Computadoras</a></li>
+      <li><a href="/products/accesorios">Accesorios</a></li>
+      <li>
+        <a href="/users/login"><i class="fa-solid fa-user"></i> Cuenta</a>
+      </li>
+      <% if (locals.isLogged) { %>
+      <li>
+        <a href="/cart"><i class="fa-solid fa-cart-shopping"></i> Carrito</a>
+      </li>
+      <% } %>
+    </ul>
+    <ul class="navbar-bottom">
+      <li>
+        <a href="/users/login"><i class="fa-solid fa-user"></i></a>
+      </li>
+      <li>
+        <a href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+      </li>
+      <li>
+        <a href="#" class="submenu1"><i class="fa-solid fa-bars"></i></a>
+        <ul class="submenu2">
+          <% if (locals.isLogged && locals.userLogged.role == 'administrador') { %>
+            <li><a href="/products">Administrar</a></li>
+            <% }else { %>
+            <li><a href="/products">Todos</a></li>
+            <% } %>
+          <li><a href="/products/celulares">Celulares</a></li>
+          <li><a href="/products/tablets">Tablets</a></li>
+          <li><a href="/products/computadoras">Computadoras</a></li>
+          <li><a href="/products/accesorios">Accesorios</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+ </header>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head.ejs', {title: 'Edición de producto', styles:
+'/css/create.css'}) %>
+<body>
+    <%- include('../partials/header.ejs') %>
+    <div class="form-container">
+        <form action="/products/edit/<%=product.id %>?_method=PUT" method="post" enctype="multipart/form-data" id="formCreate">
+          <h2>Editar Producto</h2>
+          <hr>
+          <div class="primera-linea">
+            <div class="primer-div">
+              <label for="name">Nombre:</label>
+              <input
+              type="text"
+              id="name"
+              name="name"
+              class="input-field"
+              value="<%= product.name %>"
+              />
+              <p id="nameError" class="error"><%= locals.errors && errors.name?.msg %></p>
+            </div>
+            <div class="primer-div">
+              <label for="brand">Marca:</label>
+              <select name="brand" id="brand" class="input-field">
+                <option value="" selected disabled>Selecciona una marca</option>
+                <% brands.forEach(brand => { %>
+                  <option value="<%= brand.id %>" <%= product.brand_id == brand.id ? 'selected' : null %>> <%= brand.name %></option>
+                <% }) %>
+              </select>
+              <p id="brandError" class="error"><%= locals.errors && errors.brand?.msg %></p>
+            </div>
+            </div>
+            <div class="primera-linea">
+              <div class="primer-div">
+                <label for="color">Color:</label>
+                <div id="colorShow"></div>
+                <select name="color" id="color" class="input-field">
+                  
+                  <option value="" selected disabled>Selecciona un color</option>
+                  <% colors.forEach(color => { %>
+                    <option id="<%=color.cod_hex %>" value="<%= color.id %>" <%= product.color_id == color.id ? 'selected' : null %>> <%= color.name %></option>
+                  <% }) %>
+                </select>
+                <p id="colorError" class="error"><%= locals.errors && errors.color?.msg %></p>
+              </div>
+              <div class="primer-div">
+                <label for="price">Precio:</label>
+                <input
+                type="number"
+                id="price"
+                name="price"
+                class="input-field"
+                step="0.01"
+                min="1"
+                value="<%= product.price %>"
+                />
+                <p id="priceError" class="error"><%= locals.errors && errors.price?.msg %></p>
+              </div>
+            </div>
+              
+            <div class="primera-linea">
+              <div class="primer-div">
+                <label for="category">Categoría:</label>
+                <select name="category" id="category" class="input-field">
+                  <option value="" selected disabled>Selecciona una categoría</option>
+                  <% categories.forEach(category => { %>
+                    <option value="<%= category.id %>" <%= product.category_id == category.id ? 'selected' : null %>> <%= category.name.charAt(0).toUpperCase() + category.name.slice(1) %></option>
+                  <% }) %>
+                </select>
+                <p id="categoryError" class="error"><%= locals.errors && errors.category?.msg %></p>
+              </div>
+              <div class="primer-div">
+                <label for="stock_quantity">Cantidad de stock:</label>
+                <input type="number" id="stock_quantity" name="stock_quantity" class="input-field" value="<%= product.stock_quantity ? product.stock_quantity : null %>"  />
+                <p id="stockQuantityError" class="error"><%=locals.errors && errors.stock_quantity?.msg %></p>
+              </div>
+            </div>
+          <label for="description">Descripción:</label>
+          <textarea
+            id="description"
+            name="description"
+            class="input-field"
+            rows="4"
+          ><%= product.description %></textarea>
+          <p id="descriptionError" class="error"><%= locals.errors && errors.description?.msg %></p>
+
+            <label for="image">Imagenes:</label>
+            <input
+              class="insert-img"
+              type="file"
+              id="image"
+              name="images"
+              accept=".jpg, .jpeg, .png"
+              multiple
+            />
+            <p id="imageError" class="error"><%= locals.errors && errors.image?.msg %></p>
+          <input type="text" name="id" hidden value="<%= product.id %>">
+
+          <section class="galery-container">
+            <% product.images.forEach(image => { %>
+
+            <article class="image-container" id="<%= image.id %>">
+              <img class= "image-small" src="/images/products/<%= image.image_filename %>" alt="<%= product.name %>">
+              <% if (product.images.length > 1) { %>
+                <button class="delete-icon" data-id="<%= image.id %>" id="<%=image.id %>"><i class="fa-regular fa-trash-can"></i></button>
+            <% } %>
+            </article>
+            <% }) %>
+          </section>
+          <div class="button-ubicacion">
+            <button class="btn" type="submit">Guardar</button>
+          </div>
+        </form>
+        <a href="/products" class="button-ubicacion">
+          <button class="btn" type="submit">Volver</button>
+        </a>
+      </div>
+    <%- include('../partials/footer.ejs') %>
+    <script src="/js/colorShow.js"></script>
+    <script src="/js/productFormValidation.js"></script>
+    <script src="/js/deleteProductImage.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

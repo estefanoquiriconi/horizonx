@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs', {title: 'Login', styles:
+  '/css/login.css'}) %>
+  <body>
+    <header class="main-header2">
+      <div class="main-header-top-bar2">
+        <div class="logo-container">
+          <P class="horizonL">HORIZON </P>
+          <a class="logo-link" href="/"
+          ><img class="main-header-logo" src="/images/2logo.png" alt="Logo"
+        /></a>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="login-container">
+        <h2>Iniciar sesión</h2>
+        <br>
+        <hr>
+        <form action="/users/login" method="POST" class="login-form">
+          <label for="email"> <i class="fa-solid fa-envelope"></i> Email</label>
+          <input type="email" id="email" name="email" class="icon-input" value="<%= locals.oldData && oldData.email ? oldData.email : null %>"/>
+          <p id="emailError" class="error"><%= locals.errors && errors.email?.msg %></p>
+          <label for="password"> <i class="fa-solid fa-lock"></i> Contraseña </label>
+          <input id="password" type="password" name="password"/>
+          <p id="passwordError" class="error"><%= locals.errors && errors.password?.msg %></p>
+          <div class="div-rec"><input type="checkbox" name="rememberUser" id="check">Recuerdame</div>
+          <br>
+          <button class="btn" type="submit">Ingresar</button>
+        </form>
+        <p class="bot-txt">
+          ¿No tienes una cuenta? <a href="../users/register"> Registrate </a>
+        </p>
+      </div>
+
+    </main>
+  </body>
+  <script src="/js/userLoginValidation.js"></script>
+</html>
