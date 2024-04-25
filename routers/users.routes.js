@@ -1,27 +1,34 @@
-const express = require("express");
-const controller = require("../controllers/usersController");
+const express = require('express')
+const router = express.Router()
 
-const uploadAvatarMiddleware = require("../middlewares/uploadAvatarMiddleware");
-const validateRegister = require('../middlewares/userRegisterValidationMiddleware');
-const validateLogin = require('../middlewares/userLoginValidationMiddleware');
-const validateEdit = require('../middlewares/userEditValidationMiddleware');
+const controller = require('../controllers/usersController')
 
-const guestMiddleware = require('../middlewares/guestMiddleware');
-const authMiddleware = require('../middlewares/authMiddleware');
+const upload = require('../middlewares/uploadAvatarMiddleware')
+const registerValidation = require('../middlewares/userRegisterValidationMiddleware')
+const loginValidation = require('../middlewares/userLoginValidationMiddleware')
+const editValidation = require('../middlewares/userEditValidationMiddleware')
+const guest = require('../middlewares/guestMiddleware')
+const auth = require('../middlewares/authMiddleware')
 
-const router = express.Router();
+router.get('/login', guest, controller.login)
+router.get('/register', guest, controller.register)
+router.get('/profile', auth, controller.profile)
+router.get('/logout', controller.logout)
 
-router.get("/login", guestMiddleware, controller.login);
-router.get("/register", guestMiddleware, controller.register);
-router.get("/profile", authMiddleware, controller.profile);
 router.post(
-  "/register",
-  uploadAvatarMiddleware.single("avatar"),
-  validateRegister,
+  '/register',
+  upload.single('avatar'),
+  registerValidation,
   controller.processRegister
-);
-router.post("/login",validateLogin, controller.processLogin);
-router.put("/edit",authMiddleware,uploadAvatarMiddleware.single("avatar"),validateEdit ,controller.edit)
-router.get('/logout', controller.logout);
+)
+router.post('/login', loginValidation, controller.processLogin)
 
-module.exports = router;
+router.put(
+  '/edit',
+  auth,
+  upload.single('avatar'),
+  editValidation,
+  controller.edit
+)
+
+module.exports = router

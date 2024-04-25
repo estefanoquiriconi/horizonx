@@ -1,12 +1,13 @@
-const express = require("express");
-const router = express.Router();
-const cartController = require("../controllers/cartController");
+const express = require('express')
+const router = express.Router()
 
-router.get("/", cartController.cart);
+const cartController = require('../controllers/cartController')
 
-router.post("/add/:productId", cartController.add);
+router.get('/', cartController.cart)
 
-router.delete("/delete/:itemId", cartController.delete);
-router.delete("/buy", cartController.confirmBuy);
+router.post('/add/:productId', cartController.add)
 
-module.exports = router;
+router.delete('/delete/:itemId', cartController.delete)
+router.delete('/buy', cartController.confirmBuy)
+
+module.exports = router
