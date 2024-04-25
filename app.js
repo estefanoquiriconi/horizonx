@@ -4,22 +4,25 @@ const session = require('express-session')
 const cookies = require('cookie-parser')
 const methodOverride = require('method-override')
 const cors = require('cors')
+require('dotenv').config()
 
 const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware.js')
 const authMiddleware = require('./middlewares/authMiddleware')
 
-const port = 8080
+const PORT = process.env.PORT || 3000
+const APP_URL = process.env.APP_URL || 'http://localhost'
+
 const app = express()
 
-app.listen(port, () => {
-  console.log(`Servidor habilitado http://localhost:${port}`)
+app.listen(PORT, () => {
+  console.log(`Server running... ${APP_URL}:${PORT}`)
 })
 
 app.set('view engine', 'ejs')
 app.use(express.static(path.resolve('./public')))
 app.use(
   session({
-    secret: 'decreto secreto',
+    secret: 'secret-horizonx',
     resave: false,
     saveUninitialized: false,
   })
@@ -42,11 +45,6 @@ const apiCategoriesRoutes = require('./routers/api/categoriesAPI.routes.js')
 const apiUsersRoutes = require('./routers/api/userAPI.routes.js')
 const apiColorsRoutes = require('./routers/api/colorsAPI.routes.js')
 const apiBrandsRoutes = require('./routers/api/brandsAPI.routes.js')
-
-express.Router().use(function (req, res, next) {
-  res.locals.session = req.session
-  next()
-})
 
 app.use('/', mainRoutes)
 app.use('/users', usersRoutes)
