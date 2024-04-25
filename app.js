@@ -9,13 +9,13 @@ require('dotenv').config()
 const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware.js')
 const authMiddleware = require('./middlewares/authMiddleware')
 
-const PORT = process.env.PORT || 3000
+const APP_PORT = process.env.APP_PORT || 80
 const APP_URL = process.env.APP_URL || 'http://localhost'
 
 const app = express()
 
-app.listen(PORT, () => {
-  console.log(`Server running... ${APP_URL}:${PORT}`)
+app.listen(APP_PORT, () => {
+  console.log(`Server running... ${APP_URL}:${APP_PORT}`)
 })
 
 app.set('view engine', 'ejs')

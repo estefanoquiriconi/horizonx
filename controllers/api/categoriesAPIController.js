@@ -1,6 +1,8 @@
 const { Category, Product } = require('../../database/models')
 const { validationResult } = require('express-validator')
-const BASE_URL = 'http://localhost:8080'
+require('dotenv').config()
+const { APP_URL, APP_PORT } = process.env
+const BASE_URL = `${APP_URL}:${APP_PORT || 80}`
 
 async function productsCountCategoryArray(array) {
   let countArray = []
@@ -8,7 +10,7 @@ async function productsCountCategoryArray(array) {
     const element = await Product.count({
       where: { category_id: array[index].id },
     })
-    
+
     countArray.push(element)
   }
   return countArray
@@ -47,10 +49,11 @@ const categoriesAPIController = {
   },
 
   show: async (req, res) => {
+    const { id } = req.params
     try {
-      const category = await Category.findByPk(req.params.categoryId)
+      const category = await Category.findByPk(id)
       const count = await Product.count({
-        where: { category_id: req.params.categoryId },
+        where: { category_id: id },
       })
       category.setDataValue('productCount', count)
       if (!category) {
@@ -97,7 +100,7 @@ const categoriesAPIController = {
 
   update: async (req, res) => {
     const validations = validationResult(req)
-    const { categoryId } = req.params
+    const { id } = req.params
     const { name } = req.body
 
     if (!validations.isEmpty())
@@ -111,7 +114,7 @@ const categoriesAPIController = {
         { name },
         {
           where: {
-            id: categoryId,
+            id: id,
           },
         }
       )
@@ -135,11 +138,11 @@ const categoriesAPIController = {
   },
 
   destroy: async (req, res) => {
-    const { categoryId } = req.params
+    const { id } = req.params
     try {
       const affectedRow = await Category.destroy({
         where: {
-          id: categoryId,
+          id: id,
         },
       })
       if (affectedRow === 0) {
