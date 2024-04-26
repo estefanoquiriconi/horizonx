@@ -2,11 +2,13 @@ const express = require('express')
 const router = express.Router()
 
 const controller = require('../../controllers/api/brandsAPIController')
+const validation = require('../../middlewares/nameValidationMiddleware')
 
 router.get('/', controller.index)
-router.post('/', controller.store)
+router.post('/', validation, controller.store)
+router.get('/count', controller.count)
 router.get('/:id', controller.show)
-router.put('/:id', controller.update)
+router.put('/:id', validation, controller.update)
 router.delete('/:id', controller.destroy)
 
 module.exports = router

@@ -5,11 +5,26 @@ const { APP_URL, APP_PORT } = process.env
 const BASE_URL = `${APP_URL}:${APP_PORT || 80}`
 
 
-async function productsByCategoty(catId) {
+async function productsByCategoty(id) {
   return await Product.count({
-    where: { category_id: catId }
+    where: { category_id: id }
   })
 }
+
+const handleValidationErrors = (res, errors) => {
+  return res.status(400).json({
+    success: false,
+    errors: errors.mapped()
+  });
+};
+
+const handleServerError = (res, error) => {
+  console.error(error);
+  return res.status(500).json({
+    message: 'Internal server error',
+    error: error.message
+  });
+};
 
 const categoriesAPIController = {
   index: async (req, res) => {
@@ -34,11 +49,7 @@ const categoriesAPIController = {
         data: categories,
       })
     } catch (error) {
-      return res.status(500).json({
-        success: false,
-        message: 'Hubo un error al obtener las categorías',
-        error: error.message,
-      })
+      return handleServerError(req, error)
     }
   },
 
@@ -46,70 +57,43 @@ const categoriesAPIController = {
     const { id } = req.params
     try {
       const category = await Category.findByPk(id)
-      category.setDataValue('productCount', await productsByCategoty(category.id))
-      if (!category) {
-        return res.status(404).json({
-          success: false,
-          message: 'La categoría no se encontró',
-        })
-      }
-      return res.json(category)
-    } catch (error) {
-      return res.status(500).json({
+      if (!category) return res.status(404).json({
         success: false,
-        message: 'Hubo un error al mostrar la categoría',
-        error: error.message,
+        message: 'La categoría con el ID especificado no se encontró',
       })
+      category.setDataValue('productCount', await productsByCategoty(category.id))
+      return res.status(200).json(category)
+    } catch (error) {
+      return handleServerError(res, error)
     }
   },
 
   store: async (req, res) => {
-    const validations = validationResult(req)
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) return handleValidationErrors(res, errors)
     const { name } = req.body
-
-    if (!validations.isEmpty())
-      return res.status(400).json({
-        success: false,
-        errors: validations.mapped(),
-      })
-
     try {
       const category = await Category.create({ name })
       return res.status(201).json({
         success: true,
-        message: 'La categoría se ha creado correctamente',
-        category,
+        category
       })
     } catch (error) {
-      return res.status(500).json({
-        success: false,
-        message: 'Hubo un erro al crear la categoría',
-        error: error.message,
-      })
+      return handleServerError(res, error)
     }
   },
 
   update: async (req, res) => {
-    const validations = validationResult(req)
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) return handleValidationErrors(res, errors)
     const { id } = req.params
     const { name } = req.body
-
-    if (!validations.isEmpty())
-      return res.status(400).json({
-        success: false,
-        errors: validations.mapped(),
-      })
-
     try {
       const [affectedRow] = await Category.update(
         { name },
-        {
-          where: {
-            id: id,
-          },
-        }
+        { where: { id } }
       )
-      if (affectedRow === 0) {
+      if (!affectedRow) {
         return res.status(400).json({
           success: false,
           message: 'La categoría no se encontró o no se pudo actualizar',
@@ -120,11 +104,7 @@ const categoriesAPIController = {
         message: 'La categoría se ha actualizado correctamente',
       })
     } catch (error) {
-      return res.status(500).json({
-        success: false,
-        message: 'Hubo un error al intentar actualizar la categoría',
-        error: error.message,
-      })
+      return handleServerError(res, error)
     }
   },
 
@@ -132,11 +112,9 @@ const categoriesAPIController = {
     const { id } = req.params
     try {
       const affectedRow = await Category.destroy({
-        where: {
-          id: id,
-        },
+        where: { id }
       })
-      if (affectedRow === 0) {
+      if (!affectedRow) {
         return res.status(400).json({
           success: false,
           message: 'La categoría no se encontró o no se pudo eliminar',
@@ -147,11 +125,7 @@ const categoriesAPIController = {
         message: 'La categoría se ha eliminado correctamente',
       })
     } catch (error) {
-      return res.status(500).json({
-        success: false,
-        message: 'Hubo un error al intentar eliminar la categoría',
-        error: error.message,
-      })
+      return handleServerError(req, error)
     }
   },
 
@@ -161,7 +135,7 @@ const categoriesAPIController = {
         total: await Category.count(),
       })
     } catch (error) {
-      console.error(error)
+      return handleServerError(res, error)
     }
   },
 }
