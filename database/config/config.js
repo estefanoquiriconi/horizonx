@@ -1,11 +1,14 @@
+require('dotenv').config()
+const { DB_CONNECTION, DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_DATABASE } = process.env;
+
 module.exports = {
   "development": {
-    "username": "root",
-    "password": "root",
-    "database": "horizonx_db",
-    "host": "127.0.0.1",
-    "dialect": "mysql",
-    "port": "3307"
+    "username": DB_USERNAME,
+    "password": DB_PASSWORD,
+    "database": DB_DATABASE,
+    "host": DB_HOST,
+    "dialect": DB_CONNECTION,
+    "port": DB_PORT
   },
   "test": {
     "username": "root",

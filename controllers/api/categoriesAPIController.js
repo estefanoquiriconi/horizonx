@@ -1,36 +1,30 @@
+require('dotenv').config()
 const { Category, Product } = require('../../database/models')
 const { validationResult } = require('express-validator')
-require('dotenv').config()
 const { APP_URL, APP_PORT } = process.env
 const BASE_URL = `${APP_URL}:${APP_PORT || 80}`
 
-async function productsCountCategoryArray(array) {
-  let countArray = []
-  for (let index = 0; index < array.length; index++) {
-    const element = await Product.count({
-      where: { category_id: array[index].id },
-    })
 
-    countArray.push(element)
-  }
-  return countArray
+async function productsByCategoty(catId) {
+  return await Product.count({
+    where: { category_id: catId }
+  })
 }
 
 const categoriesAPIController = {
   index: async (req, res) => {
     try {
-      const categories = await Category.findAll({})
-      const count = await productsCountCategoryArray(categories)
+      const categories = await Category.findAll()
 
-      categories.forEach((category, i) => {
-        category.name =
-          category.name.charAt(0).toUpperCase() + category.name.slice(1)
+      for (const category of categories) {
+        let productCount = await productsByCategoty(category.id);
         category.setDataValue(
           'detail',
           `${BASE_URL}/api/categories/` + category.id
         )
-        category.setDataValue('productCount', count[i])
-      })
+        category.setDataValue('productCount', productCount)
+      }
+
       return res.json({
         meta: {
           status: 200,
@@ -52,10 +46,7 @@ const categoriesAPIController = {
     const { id } = req.params
     try {
       const category = await Category.findByPk(id)
-      const count = await Product.count({
-        where: { category_id: id },
-      })
-      category.setDataValue('productCount', count)
+      category.setDataValue('productCount', await productsByCategoty(category.id))
       if (!category) {
         return res.status(404).json({
           success: false,
