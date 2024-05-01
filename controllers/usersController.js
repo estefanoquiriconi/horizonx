@@ -111,7 +111,7 @@ const controller = {
       email:email,
       password: bcryptjs.hashSync(password, 10),
       avatar: req.file?.filename || "default-avatar-image.png",
-      role_id: 1, //cliente
+      role_id: 2, //cliente
     };
 
     //User.create(userToCreate);

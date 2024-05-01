@@ -81,28 +81,6 @@ module.exports = {
           color_id: 9,
         },
         {
-          id: 9,
-          name: 'Airpods Pro',
-          description:
-            'El Audio Espacial lleva la experiencia del sonido inmersivo a un nivel mucho más personal · Hasta 6 horas de audio con una sola carga · Resistente al agua y al sudor · Cancelación Activa de Ruido y modo Ambiente',
-          price: 118440.0,
-          stock_quantity: 10,
-          brand_id: 3,
-          category_id: 2,
-          color_id: 2,
-        },
-        {
-          id: 10,
-          name: 'Watch Fit Special Edition',
-          description:
-            'Pantalla AMOLED HD de 1.64 pulgadas · GPS integrado · Gestión profesional de la salud · Compatible con Android e iOS9 · Detección automática de entrenamiento',
-          price: 106400.0,
-          stock_quantity: 10,
-          brand_id: 5,
-          category_id: 2,
-          color_id: 8,
-        },
-        {
           id: 11,
           name: 'Smart Band 2 GL Watch',
           description:
@@ -200,17 +178,6 @@ module.exports = {
           brand_id: 1,
           category_id: 1,
           color_id: 1,
-        },
-        {
-          id: 20,
-          name: 'Moto G32',
-          description:
-            'Dimensiones: Alto 161.78 x 73.84 x 8.49 mm Ancho 73.84 Peso 180 g Pulgadas 6.49" (20:9)',
-          price: 338175.0,
-          stock_quantity: 3,
-          brand_id: 2,
-          category_id: 1,
-          color_id: 2,
         },
         {
           id: 21,

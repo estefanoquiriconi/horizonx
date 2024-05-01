@@ -39,16 +39,6 @@ module.exports = {
           image_filename: '6841b7ab8dd7a3a088cb77.png',
         },
         {
-          id: 9,
-          product_id: 9,
-          image_filename: '515545448115_img.png',
-        },
-        {
-          id: 10,
-          product_id: 10,
-          image_filename: '1523465486554_img.png',
-        },
-        {
           id: 11,
           product_id: 11,
           image_filename: '12315494856_img.jpg',
@@ -162,21 +152,6 @@ module.exports = {
           id: 35,
           product_id: 19,
           image_filename: 'Samsung_Galaxy_Z_Fold5_512_GB_Phantom_Black_3.webp',
-        },
-        {
-          id: 36,
-          product_id: 20,
-          image_filename: 'Moto_G32_Gris_1.webp',
-        },
-        {
-          id: 37,
-          product_id: 20,
-          image_filename: 'Moto_G32_Gris_2.webp',
-        },
-        {
-          id: 38,
-          product_id: 20,
-          image_filename: 'Motorola_Moto_G32_3.webp',
         },
         {
           id: 39,

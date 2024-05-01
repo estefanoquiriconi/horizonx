@@ -11,7 +11,7 @@
       <input class="input-search" name="q" type="text" placeholder="Buscar..." />
     </form>
     <ul class="navbar-top">
-      <% if (locals.isLogged && locals.userLogged.role == 'administrador') { %>
+      <% if (locals.isLogged && locals.userLogged.role == 'admin') { %>
       <li><a href="/products">Administrar</a></li>
       <% }else { %>
       <li><a href="/products">Todos</a></li>
@@ -39,7 +39,7 @@
       <li>
         <a href="#" class="submenu1"><i class="fa-solid fa-bars"></i></a>
         <ul class="submenu2">
-          <% if (locals.isLogged && locals.userLogged.role == 'administrador') { %>
+          <% if (locals.isLogged && locals.userLogged.role == 'admin') { %>
             <li><a href="/products">Administrar</a></li>
             <% }else { %>
             <li><a href="/products">Todos</a></li>

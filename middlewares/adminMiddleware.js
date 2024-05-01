@@ -1,5 +1,5 @@
 function adminMiddleware(req, res, next) {
-    if (req.session.userLogged.role.name != "administrador") {
+    if (req.session.userLogged.role.name != "admin") {
       return res.redirect("/");
     }
   

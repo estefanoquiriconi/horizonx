@@ -111,7 +111,7 @@
                 <button type="submit" class="btn">Agregar al carrito</button>
               </form>
               <% if (locals.isLogged && locals.userLogged.role.name ==
-              'administrador') { %>
+              'admin') { %>
               <a href="/products/edit/<%= product.id %>" class="btn">Editar</a>
               <form
                 id="formDelete"
