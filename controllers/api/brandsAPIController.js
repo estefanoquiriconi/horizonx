@@ -1,37 +1,36 @@
 const { Brand, Product } = require('../../database/models')
-const { validationResult } = require('express-validator');
+const { validationResult } = require('express-validator')
 
 const productsByBrand = async (id) => {
   return await Product.count({
     where: {
-      brand_id: id
-    }
+      brand_id: id,
+    },
   })
 }
 
 const handleValidationErrors = (res, errors) => {
   return res.status(400).json({
     success: false,
-    errors: errors.mapped()
-  });
-};
+    errors: errors.mapped(),
+  })
+}
 
 const handleServerError = (res, error) => {
-  console.error(error);
+  console.error(error)
   return res.status(500).json({
     message: 'Internal server error',
-    error: error.message
-  });
-};
-
+    error: error.message,
+  })
+}
 
 const controller = {
   index: async (req, res) => {
     try {
       const brands = await Brand.findAll()
-      return res.json({
+      return res.status(200).json({
         meta: {
-          status: 200,
+          success: true,
           count: brands.length,
         },
         data: brands,
@@ -45,9 +44,10 @@ const controller = {
     const { id } = req.params
     try {
       const brand = await Brand.findByPk(id)
-      if (!brand) return res.status(404).json({
-        message: 'La marca con el ID especificado no se encontró'
-      })
+      if (!brand)
+        return res.status(404).json({
+          message: 'La marca con el ID especificado no se encontró',
+        })
       brand.setDataValue('totalProducts', await productsByBrand(brand.id))
       return res.status(200).json(brand)
     } catch (error) {
@@ -63,7 +63,7 @@ const controller = {
       const brand = await Brand.create({ name })
       return res.status(201).json({
         success: true,
-        brand
+        brand,
       })
     } catch (error) {
       return handleServerError(res, error)
@@ -71,15 +71,12 @@ const controller = {
   },
 
   update: async (req, res) => {
-    const errors = validationResult(req);
+    const errors = validationResult(req)
     if (!errors.isEmpty()) return handleValidationErrors(res, errors)
     const { name } = req.body
     const { id } = req.params
     try {
-      const [affectedRow] = await Brand.update(
-        { name },
-        { where: { id } }
-      )
+      const [affectedRow] = await Brand.update({ name }, { where: { id } })
       if (!affectedRow) {
         return res.status(400).json({
           success: false,
@@ -99,7 +96,7 @@ const controller = {
     const { id } = req.params
     try {
       const affectedRow = await Brand.destroy({
-        where: { id }
+        where: { id },
       })
       if (!affectedRow) {
         return res.status(400).json({

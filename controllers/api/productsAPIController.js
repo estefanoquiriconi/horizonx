@@ -42,7 +42,7 @@ const productsAPIController = {
           minimumFractionDigits: 2,
         })
         product.images.forEach((image) =>
-          image.setDataValue('url', `${BASE_URL}/api/productImage/` + image.id)
+          image.setDataValue('url', `${BASE_URL}/api/productImages/` + image.id)
         )
       })
 
@@ -83,7 +83,7 @@ const productsAPIController = {
         },
       })
       product.images.forEach((image) =>
-        image.setDataValue('url', `${BASE_URL}/api/productImage/` + image.id)
+        image.setDataValue('url', `${BASE_URL}/api/productImages/` + image.id)
       )
       res.json(product)
     } catch (error) {
@@ -110,7 +110,7 @@ const productsAPIController = {
         },
       })
       lastProduct.images.forEach((image) =>
-        image.setDataValue('url', `${BASE_URL}/api/productImage/` + image.id)
+        image.setDataValue('url', `${BASE_URL}/api/productImages/` + image.id)
       )
       res.json(lastProduct)
     } catch (error) {

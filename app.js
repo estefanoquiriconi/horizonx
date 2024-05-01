@@ -52,7 +52,7 @@ app.use('/products', productsRoutes)
 app.use('/cart', authMiddleware, cartRoutes)
 
 app.use('/api/products', apiProductsRoutes)
-app.use('/api/productImage', apiProductImageRoutes)
+app.use('/api/productImages', apiProductImageRoutes)
 app.use('/api/categories', apiCategoriesRoutes)
 app.use('/api/users', apiUsersRoutes)
 app.use('/api/colors', apiColorsRoutes)
