@@ -1,6 +1,8 @@
-const { User } = require('../../database/models')
-const BASE_URL = 'http://localhost:8080'
 const path = require('path')
+require('dotenv').config()
+const { APP_URL, APP_PORT } = process.env
+const BASE_URL = `${APP_URL}:${APP_PORT || 80}`
+const { User } = require('../../database/models')
 
 const usersAPIController = {
   onlyMails: async (req,res) => {

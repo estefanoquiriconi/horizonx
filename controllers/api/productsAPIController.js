@@ -1,5 +1,7 @@
+require('dotenv').config()
+const { APP_URL, APP_PORT } = process.env
+const BASE_URL = `${APP_URL}:${APP_PORT || 80}`
 const { Product, ProductImage } = require('../../database/models')
-const BASE_URL = 'http://localhost:8080'
 
 const productsAPIController = {
   index: async (req, res) => {
@@ -118,7 +120,7 @@ const productsAPIController = {
     }
   },
 
-    count: async (req, res) => {
+  count: async (req, res) => {
     try {
       return res.status(200).json({
         total: await Product.count(),
