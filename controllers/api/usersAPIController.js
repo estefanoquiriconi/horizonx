@@ -4,6 +4,8 @@ const { APP_URL, APP_PORT } = process.env
 const BASE_URL = `${APP_URL}:${APP_PORT || 80}`
 const { User } = require('../../database/models')
 
+const userService = require('../../services/user/index.service')
+
 const usersAPIController = {
   onlyMails: async (req,res) => {
     try {
@@ -68,20 +70,7 @@ const usersAPIController = {
   },
 
   show: async (req, res) => {
-    try {
-      const user = await User.findByPk(req.params.id, {
-        include: ['role'],
-        attributes: {
-          exclude: ['role_id','password']},
-      })
-      if (user) {
-        user.setDataValue('avatar', `${BASE_URL}/images/users/` + user.avatar)
-      }
-      
-      res.json(user)
-    } catch (error) {
-      console.error(error)
-    }
+      res.json(await userService.getById(req.params.id))
   },
 
   last: async (req, res) => {
