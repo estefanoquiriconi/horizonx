@@ -1,8 +1,6 @@
-
-require('dotenv').config()
-const { APP_URL, APP_PORT } = process.env
-const BASE_URL = `${APP_URL}:${APP_PORT || 80}`
 const { User } = require('../../database/models')
+const { BASE_URL} = require('../config.js')
+const errors = require('../../helpers/errors.helper.js')
 
 const getById = async (id) => {
     try {
@@ -19,7 +17,7 @@ const getById = async (id) => {
             return null;
         }
     } catch (error) {
-        console.log(error);
+        errors.internalServerError(error.message, 'DATA_CONSULT')
     }
 }
 
