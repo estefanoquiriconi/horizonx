@@ -62,6 +62,14 @@ const authController = {
         }
     },
 
+
+    profile: async (req, res) => {
+        res.status(200).json({
+            msg: "Perfil del usuario",
+            user: req.user
+        })
+    }
+
 }
 
 module.exports = authController
