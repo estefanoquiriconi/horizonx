@@ -20,6 +20,7 @@ const authController = {
 
             return res.status(200).json({
                 msg: "Inicio de sesión exitoso",
+                token: response.token,
                 user: response.user
             });
 
