@@ -1,12 +1,12 @@
 const express = require('express')
 const router = express.Router()
 
-const controller = require('../controllers/productsController')
+const controller = require('../../controllers/monolith/productsController')
 
-const upload = require('../middlewares/uploadProductMiddleware')
-const formValidation = require('../middlewares/productFormValidationMiddleware')
-const auth = require('../middlewares/authMiddleware')
-const admin = require('../middlewares/adminMiddleware')
+const upload = require('../../middlewares/uploadProductMiddleware')
+const formValidation = require('../../middlewares/productFormValidationMiddleware')
+const auth = require('../../middlewares/authMiddleware')
+const admin = require('../../middlewares/adminMiddleware')
 
 router.get('/detail/:id', controller.detail)
 router.get('/create', auth, admin, controller.create)

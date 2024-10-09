@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { Product, Category, Brand, Color, ProductImage } = require("../database/models");
+const { Product, Category, Brand, Color, ProductImage } = require("../../database/models");
 const { validationResult } = require("express-validator");
 const { Op } = require("sequelize");
 

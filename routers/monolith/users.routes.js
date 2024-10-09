@@ -1,14 +1,14 @@
 const express = require('express')
 const router = express.Router()
 
-const controller = require('../controllers/usersController')
+const controller = require('../../controllers/monolith/usersController')
 
-const upload = require('../middlewares/uploadAvatarMiddleware')
-const registerValidation = require('../middlewares/userRegisterValidationMiddleware')
-const loginValidation = require('../middlewares/userLoginValidationMiddleware')
-const editValidation = require('../middlewares/userEditValidationMiddleware')
-const guest = require('../middlewares/guestMiddleware')
-const auth = require('../middlewares/authMiddleware')
+const upload = require('../../middlewares/uploadAvatarMiddleware')
+const registerValidation = require('../../middlewares/userRegisterValidationMiddleware')
+const loginValidation = require('../../middlewares/userLoginValidationMiddleware')
+const editValidation = require('../../middlewares/userEditValidationMiddleware')
+const guest = require('../../middlewares/guestMiddleware')
+const auth = require('../../middlewares/authMiddleware')
 
 router.get('/login', guest, controller.login)
 router.get('/register', guest, controller.register)

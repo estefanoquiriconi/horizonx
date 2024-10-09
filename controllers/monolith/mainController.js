@@ -1,4 +1,4 @@
-const { Product, Category } = require('../database/models')
+const { Product, Category } = require('../../database/models')
 
 const mainController = {
   index: async (req, res) => {

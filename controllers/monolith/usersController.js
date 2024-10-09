@@ -4,7 +4,7 @@ const path = require("path");
 const { validationResult } = require("express-validator");
 
 
-const db = require("../database/models");
+const db = require("../../database/models");
 const Op = db.Sequelize.Op
 const controller = {
   login: (req, res) => {

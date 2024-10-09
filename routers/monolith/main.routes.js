@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const controller = require('../controllers/mainController')
+const controller = require('../../controllers/monolith/mainController')
 
 router.get('/', controller.index)
 

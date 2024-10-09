@@ -1,4 +1,4 @@
-const db = require("../database/models");
+const db = require("../../database/models");
 
 async function calculateTotalPrice(cartId) {
   const items = await db.CartItem.findAll({
