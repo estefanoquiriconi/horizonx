@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "email": "estefanoquiriconi@gmail.com",
-  "password": "123456"
+  "password": "123"
 }
 
 ### Probar el endpoint de signIn
@@ -20,4 +20,4 @@ Content-Type: application/json
 
 ### Probar el endpoint protegido con token
 GET http://localhost:8080/api/auth/profile
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJlc3RlZmFub3F1aXJpY29uaUBnbWFpbC5jb20iLCJpYXQiOjE3MjgzODkxNzcsImV4cCI6MTcyODM5Mjc3N30.EtGhxVfAG1d2p7M1iBqH7JLY3pwUEa2qMlbXU_TFZO4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiZXN0ZWZhbm9xdWlyaWNvbmlAZ21haWwuY29tIiwiaWF0IjoxNzI4Mzk4MTM2LCJleHAiOjE3Mjg0MDE3MzZ9.vt-FsaWJDDi4Ak4NbZyamKCL9NbCJy4_eDwYqGEZvCU
