@@ -1,7 +1,7 @@
 const bcryptjs = require("bcryptjs");
 const { User } = require('../../database/models');
 
-const signIn = async (email, password, first_name, last_name) => {
+const register = async (email, password, first_name, last_name) => {
     const userExists = await User.findOne({ where: { email } });
     if (userExists) {
         return { error: true, msg: "El email ya está registrado.", status: 409 };
@@ -29,4 +29,4 @@ const signIn = async (email, password, first_name, last_name) => {
     };
 }
 
-module.exports = { signIn };
+module.exports = { register };

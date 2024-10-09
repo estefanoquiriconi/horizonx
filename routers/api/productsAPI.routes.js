@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const productsAPIController = require('../../controllers/api/productsAPIController')
+const productsAPIController = require('../../controllers/api/products/productsAPIController')
 
 router.get('/', productsAPIController.index)
 router.get('/count', productsAPIController.count)

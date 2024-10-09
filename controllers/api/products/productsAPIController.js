@@ -1,7 +1,7 @@
 require('dotenv').config()
 const { APP_URL, APP_PORT } = process.env
 const BASE_URL = `${APP_URL}:${APP_PORT || 80}`
-const { Product, ProductImage } = require('../../database/models')
+const { Product, ProductImage } = require('../../../database/models')
 
 const productsAPIController = {
   index: async (req, res) => {

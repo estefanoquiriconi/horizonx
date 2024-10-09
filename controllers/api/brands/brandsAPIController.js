@@ -1,4 +1,4 @@
-const { Brand, Product } = require('../../database/models')
+const { Brand, Product } = require('../../../database/models')
 const { validationResult } = require('express-validator')
 
 const productsByBrand = async (id) => {

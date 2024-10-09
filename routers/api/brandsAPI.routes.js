@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const controller = require('../../controllers/api/brandsAPIController')
+const controller = require('../../controllers/api/brands/brandsAPIController')
 const validation = require('../../middlewares/nameValidationMiddleware')
 
 router.get('/', controller.index)

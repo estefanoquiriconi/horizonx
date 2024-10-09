@@ -1,5 +1,5 @@
 const { User } = require('../../database/models')
-const { BASE_URL} = require('../config.js')
+const { BASE_URL} = process.env
 const errors = require('../../helpers/errors.helper.js')
 
 const getById = async (id) => {

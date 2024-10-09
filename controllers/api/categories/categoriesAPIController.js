@@ -1,5 +1,5 @@
 require('dotenv').config()
-const { Category, Product } = require('../../database/models')
+const { Category, Product } = require('../../../database/models')
 const { validationResult } = require('express-validator')
 const { APP_URL, APP_PORT } = process.env
 const BASE_URL = `${APP_URL}:${APP_PORT || 80}`

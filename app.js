@@ -14,10 +14,6 @@ const APP_URL = process.env.APP_URL || 'http://localhost'
 
 const app = express()
 
-app.listen(APP_PORT, () => {
-  console.log(`Server running... ${APP_URL}:${APP_PORT}`)
-})
-
 app.set('view engine', 'ejs')
 app.use(express.static(path.resolve('./public')))
 app.use(
@@ -33,7 +29,6 @@ app.use(methodOverride('_method'))
 app.use(userLoggedMiddleware)
 app.use(express.json())
 app.use(cors())
-
 const mainRoutes = require('./routers/monolith/main.routes.js')
 const usersRoutes = require('./routers/monolith/users.routes.js')
 const productsRoutes = require('./routers/monolith/products.routes.js')
@@ -45,7 +40,7 @@ const apiCategoriesRoutes = require('./routers/api/categoriesAPI.routes.js')
 const apiUsersRoutes = require('./routers/api/userAPI.routes.js')
 const apiColorsRoutes = require('./routers/api/colorsAPI.routes.js')
 const apiBrandsRoutes = require('./routers/api/brandsAPI.routes.js')
-const apiAuthRoutes = require('./routers/api/auth.routes.js')
+const apiAuthRoutes = require('./routers/api/user/user.routes.js')
 
 app.use('/', mainRoutes)
 app.use('/users', usersRoutes)
@@ -61,3 +56,8 @@ app.use('/api/brands', apiBrandsRoutes)
 app.use('/api/auth', apiAuthRoutes)
 
 app.use('*', mainRoutes)
+
+
+app.listen(APP_PORT, () => {
+  console.log(`Server running... ${APP_URL}:${APP_PORT}`)
+})

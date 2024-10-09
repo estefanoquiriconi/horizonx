@@ -1,4 +1,4 @@
-const { Color } = require('../../database/models')
+const { Color } = require('../../../database/models')
 const { validationResult } = require('express-validator');
 
 const handleValidationErrors = (res, errors) => {

@@ -3,16 +3,16 @@ POST http://localhost:8080/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "camila@gmail.com",
-  "password": "123"
+  "email": "camila5@gmail.com",
+  "password": ""
 }
 
 ### Probar el endpoint de signIn
-POST http://localhost:8080/api/auth/signIn
+POST http://localhost:8080/api/auth/register
 Content-Type: application/json
 
 {
-  "email": "camila@gmail.com",
+  "email": "camila2@gmail.com",
   "password": "123",
   "firstName" : "Camila",
   "lastName": "Sayago"
@@ -20,4 +20,4 @@ Content-Type: application/json
 
 ### Probar el endpoint protegido con token
 GET http://localhost:8080/api/auth/profile
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJjYW1pbGFAZ21haWwuY29tIiwiaWF0IjoxNzI4NDg0Mjc0LCJleHAiOjE3Mjg0ODc4NzR9.8CEIUIxbTO_ntpg7aAGLE_AI593pnxs4STdYwYT7Y_w
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJjYW1pbGFAZ21haWwuY29tIiwiaWF0IjoxNzI4NTA0MjM0LCJleHAiOjE3Mjg1MDc4MzR9.VModa400r5mxAW32cvNaU3XELqnI-5dpxkLpo1-QKdE

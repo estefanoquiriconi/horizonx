@@ -1,4 +1,4 @@
-const { ProductImage } = require('../../database/models')
+const { ProductImage } = require('../../../database/models')
 const path = require('path')
 
 const handleServerError = (res, error) => {
