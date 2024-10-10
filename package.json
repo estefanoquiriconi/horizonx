@@ -4,7 +4,7 @@
   "description": "Se especializa en la venta de teléfonos móviles y dispositivos relacionados. Ofrecemos a nuestros clientes una amplia gama de productos y servicios que incluyen:",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "_comment": "node updateEnv.js && nodemon app.js",
     "dev": "nodemon app.js",
     "start": "node app.js"
@@ -35,6 +35,8 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1"
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.1",
+    "supertest": "^7.0.0"
   }
 }

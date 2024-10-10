@@ -61,3 +61,5 @@ app.use('*', mainRoutes)
 app.listen(APP_PORT, () => {
   console.log(`Server running... ${APP_URL}:${APP_PORT}`)
 })
+
+module.exports = app
