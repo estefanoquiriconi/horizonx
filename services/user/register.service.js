@@ -1,5 +1,5 @@
 const { User } = require('../../database/models');
-const errors = require('../../helpers/errors.helper')
+const { internalServerError } = require('../../helpers/errors.helper')
 
 const register = async (first_name, last_name, email, password, registrationCode) => {
     try {
@@ -14,7 +14,7 @@ const register = async (first_name, last_name, email, password, registrationCode
         });
         return newUser;
     } catch (error) {
-        errors.internalServerError(error.message, 'DATA_INSERT_ERROR');
+        internalServerError(error.message, 'DATA_INSERT_ERROR');
     }
 }
 
