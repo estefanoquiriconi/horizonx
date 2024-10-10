@@ -1,32 +1,21 @@
-const bcryptjs = require("bcryptjs");
 const { User } = require('../../database/models');
+const errors = require('../../helpers/errors.helper')
 
-const register = async (email, password, first_name, last_name) => {
-    const userExists = await User.findOne({ where: { email } });
-    if (userExists) {
-        return { error: true, msg: "El email ya está registrado.", status: 409 };
+const register = async (first_name, last_name, email, password, registrationCode) => {
+    try {
+        const newUser = await User.create({
+            first_name,
+            last_name,
+            email,
+            password,
+            avatar: "default-avatar-image.png",
+            role_id: 2,
+            registrationCode,
+        });
+        return newUser;
+    } catch (error) {
+        errors.internalServerError(error.message, 'DATA_INSERT_ERROR');
     }
-
-    const hashedPassword = bcryptjs.hashSync(password, 10);
-
-    const newUser = await User.create({
-        first_name,
-        last_name,
-        email,
-        password: hashedPassword,
-        avatar: "default-avatar-image.png",
-        role_id: 2, //cliente
-    });
-
-    return {
-        error: false,
-        user: {
-            id: newUser.id,
-            email: newUser.email,
-            first_name: newUser.first_name,
-            last_name: newUser.last_name
-        }
-    };
 }
 
 module.exports = { register };

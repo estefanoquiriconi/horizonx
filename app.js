@@ -8,6 +8,7 @@ require('dotenv').config()
 
 const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware.js')
 const authMiddleware = require('./middlewares/authMiddleware')
+const { errorHandler } = require('./middlewares/error/errorHandler.js')
 
 const APP_PORT = process.env.APP_PORT || 80
 const APP_URL = process.env.APP_URL || 'http://localhost'
@@ -54,9 +55,8 @@ app.use('/api/users', apiUsersRoutes)
 app.use('/api/colors', apiColorsRoutes)
 app.use('/api/brands', apiBrandsRoutes)
 app.use('/api/auth', apiAuthRoutes)
-
+app.use(errorHandler)
 app.use('*', mainRoutes)
-
 
 app.listen(APP_PORT, () => {
   console.log(`Server running... ${APP_URL}:${APP_PORT}`)

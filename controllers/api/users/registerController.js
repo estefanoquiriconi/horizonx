@@ -1,33 +1,35 @@
 const { validationResult } = require('express-validator');
-const userSerive = require('../../../services/user/index.service')
+const { User } = require('../../../database/models')
 
-const register = async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({
-            msg: "Por favor, verifica los datos ingresados.",
-            errors: errors.array()
-        });
-    }
+const userSerive = require('../../../services/user/index.service');
+const randomstring = require('randomstring');
+const bcryptjs = require('bcryptjs');
+const errorHelper = require('../../../helpers/errors.helper')
 
+const register = async (req, res, next) => {
     try {
-        const { email, password, firstName, lastName } = req.body;
-        const response = await userSerive.register(email, password, firstName, lastName);
-
-        if (response.error) {
-            return res.status(response.status).json({ msg: response.msg });
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            errorHelper.badRequestError(errors.array())
         }
 
-        return res.status(201).json({
-            msg: "Usuario registrado exitosamente.",
-            user: response.user
-        });
+        const { email, password, firstName, lastName } = req.body;
+        const registrationCode = randomstring.generate(30);
+        const hashedPassword = bcryptjs.hashSync(password, 10);
+        const userExists = await User.findOne({ where: { email } });
 
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({
-            msg: "Error en el servidor. Por favor, inténtalo de nuevo más tarde."
+        if (userExists) {
+            errorHelper.conflictError('El email ya está registrado.')
+        }
+
+        await userSerive.register(firstName, lastName, email, hashedPassword, registrationCode);
+
+        return res.status(201).json({
+            status: "success",
+            message: "Usuario registrado con éxito.",
         });
+    } catch (error) {
+        next(error);
     }
 }
 
