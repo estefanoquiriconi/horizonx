@@ -10,6 +10,10 @@ CREATE TABLE `users` (
    `avatar` VARCHAR(100) NOT NULL,
    `password` VARCHAR(100) NOT NULL,
    `role_id` INT NOT NULL,
+   `registrationCode` VARCHAR(30),
+   `recoverPassCode` VARCHAR (10),
+   `createdAt` DATETIME DEFAULT CURRENT_TIMESTAMP,
+   `modifiedAt` DATETIME ON UPDATE CURRENT_TIMESTAMP
    PRIMARY KEY (`id`)
 );
 

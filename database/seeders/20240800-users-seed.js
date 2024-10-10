@@ -8,8 +8,10 @@ module.exports = {
         email: 'maria.fernandez@gmail.com',
         avatar: '1712112969193.jpg',
         password:
-          '$2a$10$1t.uCqcLX0xBPWsioSP6b.hwOz.2RNjaS9.fRTD0sNZ7OeNq0gTba', // 123
-        role_id: 1, //admin
+          '$2a$10$1t.uCqcLX0xBPWsioSP6b.hwOz.2RNjaS9.fRTD0sNZ7OeNq0gTba', // Contraseña: 123
+        role_id: 1, // admin
+        created_at: new Date(),
+        updated_at: new Date(),
       },
       {
         id: 2,
@@ -18,23 +20,15 @@ module.exports = {
         email: 'javier.gonzales@gmail.com',
         avatar: '1712114265240.jpg',
         password:
-          '$2a$10$1t.uCqcLX0xBPWsioSP6b.hwOz.2RNjaS9.fRTD0sNZ7OeNq0gTba', // 123
-        role_id: 2, //cliente
+          '$2a$10$1t.uCqcLX0xBPWsioSP6b.hwOz.2RNjaS9.fRTD0sNZ7OeNq0gTba', // Contraseña: 123
+        role_id: 2, // cliente
+        created_at: new Date(),
+        updated_at: new Date(),
       },
-      {
-        id: 3,
-        first_name: 'Carlos',
-        last_name: 'López',
-        email: 'carlos.lopez@gmail.com',
-        avatar: '1712113629067.jpg',
-        password:
-          '$2a$10$1t.uCqcLX0xBPWsioSP6b.hwOz.2RNjaS9.fRTD0sNZ7OeNq0gTba', // 123
-        role_id: 2, //cliente
-      },
-    ])
+    ]);
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete('users', null, {})
+    await queryInterface.bulkDelete('users', null, {});
   },
-}
+};

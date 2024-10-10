@@ -1,34 +1,71 @@
-module.exports = (sequelize, dataTypes) => {
-      const cols = {
-            id : { type: dataTypes.INTEGER, primaryKey:true,autoIncrement:true},
-            first_name: {type: dataTypes.STRING, allowNull: false},
-            last_name:{type: dataTypes.STRING, allowNull: false},
-            email:{type: dataTypes.STRING,allowNull: false},
-            avatar:{type: dataTypes.STRING},
-            password:{type: dataTypes.STRING,allowNull: false},
-            role_id:{type: dataTypes.INTEGER},
-            fullName: {
-                  type: dataTypes.VIRTUAL,
-                  get() {
-                    return `${this.first_name} ${this.last_name}`;
-                  },
-                  set(value) {
-                    throw new Error('Do not try to set the `fullName` value!');
-                  }
+module.exports = (sequelize, DataTypes) => {
+    const User = sequelize.define(
+        "User",
+        {
+            id: {
+                type: DataTypes.INTEGER,
+                primaryKey: true,
+                autoIncrement: true
+            },
+            first_name: {
+                type: DataTypes.STRING(50),
+                allowNull: false
+            },
+            last_name: {
+                type: DataTypes.STRING(50),
+                allowNull: false
+            },
+            email: {
+                type: DataTypes.STRING(100),
+                allowNull: false,
+                unique: true
+            },
+            avatar: {
+                type: DataTypes.STRING(100),
+                allowNull: false,
+                defaultValue: 'default-avatar-image.png'
+            },
+            password: {
+                type: DataTypes.STRING(100),
+                allowNull: false
+            },
+            role_id: {
+                type: DataTypes.INTEGER,
+                allowNull: false
+            },
+            registrationCode: {
+                type: DataTypes.STRING(30),
+                allowNull: true
+            },
+            recoverPassCode: {
+                type: DataTypes.STRING(10),
+                allowNull: true
+            },
+            created_at: {
+                type: DataTypes.DATE,
+                allowNull: false,
+                defaultValue: DataTypes.NOW
+            },
+            updated_at: {
+                type: DataTypes.DATE,
+                allowNull: true,
+                defaultValue: DataTypes.NOW
             }
-      }
-      const config = {
+        },
+        {
             tableName: 'users',
-            timestamps: false
-      }
-      const User = sequelize.define('User', cols, config)
-
-      User.associate = function (models) {
-            User.belongsTo(models.Role, { 
-                as: "role",
-                foreignKey: "role_id"
-            })
+            timestamps: true,
+            createdAt: 'created_at',
+            updatedAt: 'updated_at'
         }
+    );
 
-      return User
-}
+    User.associate = function (models) {
+        User.belongsTo(models.Role, { 
+            as: "role",
+            foreignKey: "role_id"
+        })
+    }
+
+    return User;
+};
