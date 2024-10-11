@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const controller = require('../../controllers/monolith/usersController')
+const controller = require('../../controllers/web/usersController')
 
 const upload = require('../../middlewares/uploadAvatarMiddleware')
 const registerValidation = require('../../middlewares/userRegisterValidationMiddleware')

@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const controller = require('../../controllers/monolith/productsController')
+const controller = require('../../controllers/web/productsController')
 
 const upload = require('../../middlewares/uploadProductMiddleware')
 const formValidation = require('../../middlewares/productFormValidationMiddleware')

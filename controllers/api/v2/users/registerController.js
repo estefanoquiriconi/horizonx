@@ -1,8 +1,8 @@
 const { validationResult } = require('express-validator');
 const randomstring = require('randomstring');
 const bcryptjs = require('bcryptjs');
-const userSerive = require('../../../services/user/index.service');
-const { badRequestError, conflictError } = require('../../../helpers/errors.helper')
+const userSerive = require('../../../../services/user/index.service');
+const { badRequestError, conflictError } = require('../../../../helpers/errors.helper')
 
 const register = async (req, res, next) => {
     try {

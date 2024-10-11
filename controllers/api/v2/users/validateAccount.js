@@ -1,5 +1,5 @@
-const { notFoundError } = require('../../../helpers/errors.helper')
-const userService = require('../../../services/user/index.service')
+const { notFoundError } = require('../../../../helpers/errors.helper')
+const userService = require('../../../../services/user/index.service')
 
 const validateAccount = async (req, res, next) => {
     try {

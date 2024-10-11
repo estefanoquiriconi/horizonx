@@ -1,5 +1,5 @@
 const { validationResult } = require('express-validator');
-const userSerive = require('../../../services/user/index.service')
+const userSerive = require('../../../../services/user/index.service')
 
 const login = async (req, res, next) => {
     const errors = validationResult(req);

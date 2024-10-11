@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const usersAPIController = require('../../controllers/api/usersAPIController')
+const usersAPIController = require('../../../controllers/api/v1/usersAPIController')
 
 router.get('/', usersAPIController.index)
 router.get('/count', usersAPIController.count)

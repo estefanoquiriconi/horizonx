@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
-const controller = require('../../controllers/api/categories/categoriesAPIController')
-const validations = require('../../middlewares/nameValidationMiddleware')
+const controller = require('../../../controllers/api/v1/colorsAPIController')
+const validations = require('../../../middlewares/colorValidationMiddleware')
 
 router.get('/', controller.index)
 router.post('/', validations, controller.store)

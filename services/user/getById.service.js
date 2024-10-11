@@ -1,4 +1,4 @@
-const { User } = require('../../database/models')
+const { User } = require('../../database/models/index.js')
 const { BASE_URL} = process.env
 const errors = require('../../helpers/errors.helper.js')
 

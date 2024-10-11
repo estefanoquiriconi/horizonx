@@ -9,7 +9,7 @@ describe('User Registration API', () => {
 
   it('should register a new user successfully', async () => {
     const response = await request(app)
-      .post('/api/auth/register')
+      .post('/api/v2/users/register')
       .send({
         firstName: 'Estéfano',
         lastName: 'Quiriconi',
@@ -38,7 +38,7 @@ describe('User Registration API', () => {
     });
 
     const response = await request(app)
-      .post('/api/auth/register')
+      .post('/api/v2/users/register')
       .send({
         firstName: 'Estéfano',
         lastName: 'Quiriconi',
