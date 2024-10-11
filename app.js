@@ -41,8 +41,11 @@ app.use('/api/v2', apiV2Routes)
 app.use(errorHandler)
 app.use('*', webRoutes)
 
-app.listen(APP_PORT, () => {
-  console.log(`Server running... ${APP_URL}:${APP_PORT}`)
-})
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(APP_PORT, () => {
+    console.log(`Server running... ${APP_URL}:${APP_PORT}`)
+  })
+}
+
 
 module.exports = app
