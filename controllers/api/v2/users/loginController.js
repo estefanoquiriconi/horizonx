@@ -1,31 +1,50 @@
 const { validationResult } = require('express-validator');
+const bcryptjs = require('bcryptjs')
 const userSerive = require('../../../../services/user/index.service')
+const { notAuthorizedError, notFoundError, forbiddenError, badRequestError } = require('../../../../helpers/errors.helper')
+const { createToken } = require('../../../../services/security/createToken.service')
 
 const login = async (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({
-            msg: "Error en la validación de los datos.",
-            errors: errors.array()
-        });
-    }
     try {
-        const response = await userSerive.login(req.body.email, req.body.password);
-        if (response.error) {
-            return res.status(response.status).json({ msg: response.msg });
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            badRequestError(errors.array())
+        }
+        const { email, password } = req.body
+
+        const user = await userSerive.getByEmail(email)
+        if (!user) {
+            notFoundError('Usuario no encontrado', 'USER_NOT_FOUND')
         }
 
+        const passwordOk = bcryptjs.compareSync(password, user.password);
+        if (!passwordOk) {
+            notAuthorizedError('Credenciales incorrectas', 'INVALID_CREDENTIALS')
+        }
+
+        if (!user.active && user.registrationCode != null) {
+            forbiddenError('El usuario aún no fue activado', 'PENDING_ACTIVATION')
+        }
+
+        if (!user.active && user.registrationCode == null) {
+            forbiddenError('El usuario está desactivado', 'USER_INACTIVE')
+        }
+
+        const tokenInfo = {
+            id: user.id,
+            email: user.email
+        }
+
+        const token = createToken(tokenInfo);
+
         return res.status(200).json({
-            msg: "Inicio de sesión exitoso",
-            token: response.token,
-            user: response.user
+            status: "success",
+            message: "Usuario logueado con éxito",
+            token
         });
 
     } catch (error) {
-        console.error(error);
-        return res.status(500).json({
-            msg: "Error en el servidor. Por favor, inténtalo de nuevo más tarde."
-        });
+        next(error)
     }
 };
 

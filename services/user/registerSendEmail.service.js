@@ -7,7 +7,7 @@ const registerSendEmail = async (firstName, lastName, email, registrationCode) =
         <h1>Bienvenid@ ${lastName} ${firstName}</h1>
         Gracias por registarte en HorizonX. Para activar tu cuenta, haz click en el siguiente enlace:
 
-        <a href=${APP_BASE_URL}/api/auth/validate/${registrationCode}>Activar mi cuenta</a>
+        <a href=${APP_BASE_URL}/api/v2/users/validate/${registrationCode}>Activar mi cuenta</a>
     `;
     const subject = 'Bienvenido a HorizonX';
 
