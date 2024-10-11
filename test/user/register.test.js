@@ -35,7 +35,6 @@ describe('User Registration API', () => {
       email: 'estefanoquiriconi@gmail.com',
       password: 'password123',
       role_id: 2,
-      createdAt: Date.now()
     });
 
     const response = await request(app)

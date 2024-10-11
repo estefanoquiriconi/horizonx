@@ -23,6 +23,8 @@ const register = async (req, res, next) => {
 
         await userSerive.register(firstName, lastName, email, hashedPassword, registrationCode);
 
+        await userSerive.registerSendEmail(firstName, lastName, email, registrationCode);
+
         return res.status(201).json({
             status: "success",
             message: "Usuario registrado con éxito.",
