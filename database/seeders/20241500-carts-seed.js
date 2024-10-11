@@ -11,11 +11,6 @@ module.exports = {
         user_id: 2,
         total_price: 0.0,
       },
-      {
-        id: 3,
-        user_id: 3,
-        total_price: 0.0,
-      },
     ])
   },
 
