@@ -15,5 +15,6 @@ router.get('/profile', verifyToken, (req, res) => {
         user: req.user
     })
 })
+router.get('/validate/:registrationCode', userController.validateAccount)
 
 module.exports = router
