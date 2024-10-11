@@ -10,8 +10,6 @@ module.exports = {
         password:
           '$2a$10$1t.uCqcLX0xBPWsioSP6b.hwOz.2RNjaS9.fRTD0sNZ7OeNq0gTba', // Contraseña: 123
         role_id: 1, // admin
-        created_at: new Date(),
-        updated_at: new Date(),
       },
       {
         id: 2,
@@ -22,8 +20,6 @@ module.exports = {
         password:
           '$2a$10$1t.uCqcLX0xBPWsioSP6b.hwOz.2RNjaS9.fRTD0sNZ7OeNq0gTba', // Contraseña: 123
         role_id: 2, // cliente
-        created_at: new Date(),
-        updated_at: new Date(),
       },
     ]);
   },

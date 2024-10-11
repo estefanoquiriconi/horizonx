@@ -8,7 +8,8 @@ module.exports = {
     "database": DB_DATABASE,
     "host": DB_HOST,
     "dialect": DB_CONNECTION,
-    "port": DB_PORT
+    "port": DB_PORT,
+    "timezone": '-03:00',
   },
   "test": {
     "username": DB_USERNAME,
@@ -16,7 +17,8 @@ module.exports = {
     "database": "horizonx_test",
     "host": DB_HOST,
     "dialect": DB_CONNECTION,
-    "port": DB_PORT
+    "port": DB_PORT,
+    "timezone": '-03:00',
   },
   "production": {
     "username": "root",
