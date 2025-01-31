@@ -33,10 +33,20 @@ app.use(cors())
 const webRoutes = require('./routers/web/index.routes.js')
 const apiV1Routes = require('./routers/api/v1/index.routes.js')
 const apiV2Routes = require('./routers/api/v2/index.routes.js')
+const { sendMail } = require('./helpers/email.helper.js')
 
 app.use(webRoutes)
 app.use('/api/v1', apiV1Routes)
 app.use('/api/v2', apiV2Routes)
+
+app.post('/message', async (req, res) => {
+
+  const { name, email, message } = req.body
+
+  await sendMail('estefanoquiriconi@gmail.com', email, `${message} - ${name}`);
+  
+  res.send('Message received')
+})
 
 app.use(errorHandler)
 app.use('*', webRoutes)
